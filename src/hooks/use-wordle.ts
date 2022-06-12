@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormattedGuess } from "../interfaces";
+import { FormattedGuess, UsedKeys } from "../interfaces";
 
 export const useWordle = (solution: string) => {
   const [ turn, setTurn ] = useState(0)
@@ -7,6 +7,7 @@ export const useWordle = (solution: string) => {
   const [ guesses, setGuesses ] = useState<(FormattedGuess[])[]>([...Array(6)])
   const [ history, setHistory ] = useState<string[]>([])
   const [ isCorrect, setIsCorrect ] = useState(false)
+  const [ usedKeys, setUsedKeys ] = useState<UsedKeys>({})
 
   const formatGuess = () => {
     const solutionArray: (string | null)[] = solution.split('')
@@ -49,6 +50,28 @@ export const useWordle = (solution: string) => {
     setTurn(prev => {
       return prev + 1
     })
+    setUsedKeys(prev => {
+      const newKeys = {...prev}
+
+      formattedGuess.forEach(letter => {
+        const currentColour = newKeys[letter.key]
+        if (letter.colour === 'green') {
+          newKeys[letter.key] = 'green'
+          return
+        }
+        if (letter.colour === 'yellow' && currentColour !== 'green') {
+          newKeys[letter.key] = 'yellow'
+          return
+        }
+        if (letter.colour === 'grey' && currentColour !== ('green' || 'yellow')) {
+          console.log(111111)
+          newKeys[letter.key] = 'grey'
+          return
+        }
+      })
+
+      return newKeys
+    })
     setCurrentGuess('')
   }
 
@@ -85,6 +108,7 @@ export const useWordle = (solution: string) => {
     currentGuess,
     guesses,
     isCorrect,
-    handleKeyup
+    handleKeyup,
+    usedKeys
   }
 }

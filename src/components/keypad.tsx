@@ -1,9 +1,11 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { FormattedGuess, Letter } from '../interfaces';
+import { FormattedGuess, Letter, UsedKeys } from '../interfaces';
 
-interface KeypadProps {}
+interface KeypadProps {
+  usedKeys: UsedKeys;
+}
 
-const Keypad: FunctionComponent<KeypadProps> = () => {
+const Keypad: FunctionComponent<KeypadProps> = ({ usedKeys }) => {
   const [letters, setLetters] = useState<Letter[]>([]);
 
   useEffect(() => {
@@ -18,7 +20,12 @@ const Keypad: FunctionComponent<KeypadProps> = () => {
   return (
     <div className='keypad'>
       {letters.map((letter) => {
-        return <div key={letter.key}>{letter.key}</div>;
+        const colour = usedKeys[letter.key];
+        return (
+          <div key={letter.key} className={colour}>
+            {letter.key}
+          </div>
+        );
       })}
     </div>
   );
