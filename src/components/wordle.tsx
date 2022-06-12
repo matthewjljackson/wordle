@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useWordle } from '../hooks';
 import Grid from './grid';
+import Keypad from './keypad';
 
 interface WordleProps {
   solution: string;
@@ -23,6 +24,7 @@ const Wordle: FunctionComponent<WordleProps> = ({ solution }) => {
     <>
       <div>current guess - {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
+      <Keypad />
     </>
   );
 };
