@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { FormattedGuess } from '../interfaces';
 
 interface RowProps {

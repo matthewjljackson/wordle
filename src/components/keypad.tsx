@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { FormattedGuess, Letter, UsedKeys } from '../interfaces';
+import { Letter, UsedKeys } from '../interfaces';
 
 interface KeypadProps {
   usedKeys: UsedKeys;
@@ -16,7 +16,6 @@ const Keypad: FunctionComponent<KeypadProps> = ({ usedKeys }) => {
       });
   }, []);
 
-  if (letters) console.log({ letters });
   return (
     <div className='keypad'>
       {letters.map((letter) => {
