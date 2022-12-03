@@ -1,22 +1,27 @@
-## To run this application:
+# To run this application:
 
-# Start the server:
+## Start the server:
 node ./server/server.js
 
-# Open another terminal
+##Start the frontend:
+ Open another terminal
+ 
 Change directory into front end using:
+
 cd frontend
-To start the front end:
+
 npm start
 
 In your browser head to:
 http://localhost:3000
 
-# Note: The letters can be typed in, not clicked on. 
+Note: The letters can be typed in, not clicked on. 
 
-# To run docker-compose:
+## To run docker-compose:
 Ensure docker desktop is running.
-in terminal type docker-compose up
+
+in terminal type:
+<docker-compose up>
 This currently creates a database.
 
 # Docker: 
