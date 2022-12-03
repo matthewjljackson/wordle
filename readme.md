@@ -49,5 +49,4 @@ Open a new terminal ensure docker is running
 docker run -e POSTGRES_PASSWORD=1234 --name p13 -d postgres:13
  docker exec -it p13 psql -U postgres
 copy and paste draft-db.sql into the interactive terminal. 
-
-
+Also, if I create a postgressql container using docker-compose, I am not sure how to enter it in interactive mode.
