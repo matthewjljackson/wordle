@@ -70,6 +70,3 @@ INSERT INTO letters (key)
 INSERT INTO letters (key)
     VALUES ("z");
     
-
-select * FROM words;
-select * FROM letters;
