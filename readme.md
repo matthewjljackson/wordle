@@ -1,4 +1,4 @@
-# To run this application:
+## To run this application:
 
 # Start the server:
 node ./server/server.js
