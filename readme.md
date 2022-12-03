@@ -29,11 +29,11 @@ To build the server contanter
 cd server
 docker build -t server .
 
-# Docker Error:
-
-# frontend load error.
-Replication steps:
+## Docker frontend load error.
+### Replication steps:
+ 
 cd frontend
+ 
 docker build -t frontend .
 
 This displays: 
@@ -44,14 +44,20 @@ This displays:
  => => transferring context: 32B                                                                                                                                        0.0s
 failed to solve with frontend dockerfile.v0: failed to create LLB definition: file with no instructions
 
-# psql errors:
+## psql errors:
 ERROR:  relation "letters" does not exist
 LINE 1: INSERT INTO letters (key)
-# This appears on numerous lines. 
-Replication steps:
+ 
+This appears on numerous lines. 
+ 
+### Replication steps:
 
 Open a new terminal ensure docker is running
+ 
 docker run -e POSTGRES_PASSWORD=1234 --name p13 -d postgres:13
+ 
  docker exec -it p13 psql -U postgres
+ 
 copy and paste draft-db.sql into the interactive terminal. 
+ 
 Also, if I create a postgressql container using docker-compose, I am not sure how to enter it in interactive mode.
