@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+const express = require('express')
 
 const app = express();
 const port = 3002;
@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
   // Request methods you wish to allow
   res.setHeader(
@@ -29,11 +29,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/solutions', (_req: Request, res: Response) => {
+app.get('/solutions', (_req, res) => {
   res.status(200).json([{ id: 1, word: 'equip' }]);
 });
 
-app.get('/letters', (_req: Request, res: Response) => {
+app.get('/letters', (_req, res) => {
+  // here
   res
     .status(200)
     .json([
