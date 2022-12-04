@@ -20,5 +20,7 @@ sleep 5
 docker exec -it ${x} psql -U wordle_user wordle_db -f /opt/sql/draft-db.sql
 sleep 5
 echo 'This volume now contains data'
-# Kill Postgres container:
-#  Rm -f  ${CONTAINER_ID}
+
+sleep 5
+docker ps -a | tail -n+2| cut -d " " -f1 | xargs docker rm -f
+ echo 'All containers removed'

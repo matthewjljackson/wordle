@@ -63,6 +63,7 @@ copy and paste draft-db.sql into the interactive terminal.
 Also, if I create a postgressql container using docker-compose, I am not sure how to enter it in interactive mode.
 
 
+#NOTE THIS REMOVES ALL DOCKER CONTAINERS, ONLY RUN IF IT'S SAFE TO DO SO
 
 # To run the bash script (WIP)
 1. Open Terminal
