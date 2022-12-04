@@ -21,7 +21,7 @@ Note: The letters can be typed in, not clicked on.
 Ensure docker desktop is running.
 
 in terminal type:
-<docker-compose up>
+docker-compose up
 This currently creates a database.
 
 # Docker: 

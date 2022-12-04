@@ -1,72 +1,54 @@
 CREATE TABLE words (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    word TEXT);
+  word_id INT NOT NULL,
+  word_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (word_id),
+  UNIQUE (word_name)
+);
 
-INSERT INTO words (word)
-    VALUES ("oxide");
-INSERT INTO words (word)
-    VALUES ("hello");
-INSERT INTO words (word)
-    VALUES ("equip");
-INSERT INTO words (word)
-    VALUES ("torso");
-INSERT INTO words (word)
-    VALUES ("mixed");
+INSERT INTO words 
+    (word_id, word_name) 
+VALUES 
+    (1,'oxide'),
+    (2,'torso'),
+    (3,'hello'),
+    (4,'equip'),
+    (5,'mixed');
+
 
 CREATE TABLE letters (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    key TEXT);
+  letter_id INT NOT NULL,
+  letter_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (letter_id),
+  UNIQUE (letter_name)
+);
 
-INSERT INTO letters (key)
-    VALUES ("a");
-INSERT INTO letters (key)
-    VALUES ("b");
-INSERT INTO letters (key)
-    VALUES ("c");
-INSERT INTO letters (key)
-    VALUES ("d");
-INSERT INTO letters (key)
-    VALUES ("e");
-INSERT INTO letters (key)
-    VALUES ("f");
-INSERT INTO letters (key)
-    VALUES ("g");
-INSERT INTO letters (key)
-    VALUES ("h");
-INSERT INTO letters (key)
-    VALUES ("i");
-INSERT INTO letters (key)
-    VALUES ("j");
-INSERT INTO letters (key)
-    VALUES ("k");
-INSERT INTO letters (key)
-    VALUES ("l");
-INSERT INTO letters (key)
-    VALUES ("m");
-INSERT INTO letters (key)
-    VALUES ("n");
-INSERT INTO letters (key)
-    VALUES ("o");
-INSERT INTO letters (key)
-    VALUES ("p");
-INSERT INTO letters (key)
-    VALUES ("q");
-INSERT INTO letters (key)
-    VALUES ("r");
-INSERT INTO letters (key)
-    VALUES ("s");
-INSERT INTO letters (key)
-    VALUES ("t");
-INSERT INTO letters (key)
-    VALUES ("u");
-INSERT INTO letters (key)
-    VALUES ("v");
-INSERT INTO letters (key)
-    VALUES ("w");
-INSERT INTO letters (key)
-    VALUES ("x");
-INSERT INTO letters (key)
-    VALUES ("y");
-INSERT INTO letters (key)
-    VALUES ("z");
-    
+INSERT INTO letters 
+    (letter_id, letter_name) 
+VALUES 
+    (1,'a'),
+    (2,'b'),
+    (3,'c'),
+    (4,'d'),
+    (5,'e'),
+    (6,'f'),
+    (7,'g'),
+    (8,'h'),
+    (9,'i'),
+    (10,'j'),
+    (11,'k'),
+    (12,'l'),
+    (13,'m'),
+    (14,'n'),
+    (15,'o'),
+    (16,'p'),
+    (17,'q'),
+    (18,'r'),
+    (19,'s'),
+    (20,'t'),
+    (21,'u'),
+    (22,'v'),
+    (23,'w'),
+    (24,'x'),
+    (25,'y'),
+    (26,'z');
+

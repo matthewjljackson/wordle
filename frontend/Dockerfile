@@ -1,19 +1,19 @@
-# FROM node:18
+FROM node:18
 
-# # Create app directory
-# WORKDIR /usr/src/app
+# Create app directory
+WORKDIR /usr/src/app
 
-# # Install app dependencies
-# # A wildcard is used to ensure both package.json AND package-lock.json are copied
-# # where available (npm@5+)
-# COPY package*.json ./
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-# RUN npm install
+RUN npm install
 
-# # Bundle app source
-# COPY . . 
+# Bundle app source
+COPY . . 
 
-# # Just documentation!
-# EXPOSE 3000
+# Just documentation!
+EXPOSE 3000
 
-# CMD [ "node", "app.tsx" ] 
+CMD [ "node", "app.tsx" ] 
