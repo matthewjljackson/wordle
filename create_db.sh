@@ -6,7 +6,7 @@ pg_pass="wordle_password"
 #Checking the volumes 
 docker volume ls
 
-if [[ $(docker volume ls) == "wordle_dbdata" ]]; then docker volume rm wordle_dbdata; fi
+if [[ $(docker volume ls -f name=wordle_dbdata) == "wordle_dbdata" ]]; then docker volume rm wordle_dbdata; fi
 
 # Remove the volume
 docker volume rm wordle_dbdata
