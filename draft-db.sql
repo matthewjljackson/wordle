@@ -1,3 +1,4 @@
+-- Creating the words table
 CREATE TABLE words (
   word_id INT NOT NULL,
   word_name VARCHAR(30) NOT NULL,
@@ -5,6 +6,7 @@ CREATE TABLE words (
   UNIQUE (word_name)
 );
 
+-- Adding words into the table
 INSERT INTO words 
     (word_id, word_name) 
 VALUES 
@@ -15,7 +17,7 @@ VALUES
     (5,'mixed'),
     (6,'cloud');
 
-
+-- Creating the letters table
 CREATE TABLE letters (
   letter_id INT NOT NULL,
   letter_name VARCHAR(30) NOT NULL,
@@ -23,6 +25,7 @@ CREATE TABLE letters (
   UNIQUE (letter_name)
 );
 
+-- Adding letters into the table
 INSERT INTO letters 
     (letter_id, letter_name) 
 VALUES 

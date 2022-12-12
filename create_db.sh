@@ -15,7 +15,7 @@ docker volume rm wordle_dbdata
 echo "Now running the postgres container"
 container_id=$(docker run -it -d  -e POSTGRES_USER=${pg_user} -e POSTGRES_DB=${pg_db} -e POSTGRES_PASSWORD=${pg_pass} -v $PWD:/opt/sql -v wordle_dbdata:/var/lib/postgresql/data postgres:13) 
 
-echo ${container_id} "is the container ID"
+
 
 
 echo "Container has been made with a volume"
@@ -26,6 +26,7 @@ sleep 5
 # timeout 90s bash -c "until docker exec $DOCKER_CONTAINER_NAME pg_isready ; do sleep 5 ; done
 
 docker exec -it ${container_id} psql -U ${pg_user} ${pg_db} -f /opt/sql/draft-db.sql
+docker exec ${container_id} pg_isready
 
 echo "This volume now contains data"
 
