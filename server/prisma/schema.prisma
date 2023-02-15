@@ -12,10 +12,10 @@ datasource db {
 
 model Word {
   id   Int    @id @default(autoincrement())
-  word_name String @unique
+  word String @unique
 }
 
 model Letter {
-  letter_id   Int    @id @default(autoincrement())
-  letter_name String @unique
+  id   Int    @id @default(autoincrement())
+  key String @unique
 }

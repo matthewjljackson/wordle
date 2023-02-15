@@ -1,14 +1,14 @@
 -- Creating the words table
-CREATE TABLE words (
-  word_id INT NOT NULL,
-  word_name VARCHAR(30) NOT NULL,
-  PRIMARY KEY (word_id),
-  UNIQUE (word_name)
+CREATE TABLE Word (
+  id INT NOT NULL,
+  word VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (word)
 );
 
 -- Adding words into the table
-INSERT INTO words 
-    (word_id, word_name) 
+INSERT INTO Word
+    (id, word) 
 VALUES 
     (1,'oxide'),
     (2,'torso'),
@@ -18,16 +18,16 @@ VALUES
     (6,'cloud');
 
 -- Creating the letters table
-CREATE TABLE letters (
-  letter_id INT NOT NULL,
-  letter_name VARCHAR(30) NOT NULL,
-  PRIMARY KEY (letter_id),
-  UNIQUE (letter_name)
+CREATE TABLE Letter (
+  id INT NOT NULL,
+  key VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (key)
 );
 
 -- Adding letters into the table
-INSERT INTO letters 
-    (letter_id, letter_name) 
+INSERT INTO Letter
+    (id, key) 
 VALUES 
     (1,'a'),
     (2,'b'),

@@ -1,32 +1,32 @@
 #!/bin/bash
-pg_user="wordle_user"
-pg_db="wordle_db"
-pg_pass="wordle_password"
-loop_limit=20
-counter=0
 
-#Checking the volumes 
-docker volume ls
+POSTGRES_USER="wordle_user"
+POSTGRES_DB="wordle_db"
+POSTGRES_PASSWORD="wordle_password"
 
-if [[ $(docker volume ls -f name=wordle_dbdata) == "wordle_dbdata" ]]; then docker volume rm wordle_dbdata; fi
+# This avoids clashes with existing Postgres servers
+POSTGRES_PORT=5433
+
+LOOP_LIMIT=20
 
 # Remove the volume
-docker volume rm wordle_dbdata
+docker volume rm wordle_dbdata 2>/dev/null
 
 # Run the POSTGRES container
 echo "Now running the postgres container"
-container_id=$(docker run -it -d  -e POSTGRES_USER=${pg_user} -e POSTGRES_DB=${pg_db} -e POSTGRES_PASSWORD=${pg_pass} -v $PWD:/opt/sql -v wordle_dbdata:/var/lib/postgresql/data postgres:13) 
+container_id=$(docker run -it -d  -e POSTGRES_USER=${POSTGRES_USER} -e POSTGRES_DB=${POSTGRES_DB} -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -v $PWD:/opt/sql -v wordle_dbdata:/var/lib/postgresql/data postgres:13 -p ${POSTGRES_PORT}) 
 
+loop_counter=0
 while true; do
-  docker exec ${container_id} pg_isready
+  docker exec ${container_id} pg_isready -p ${POSTGRES_PORT}
   if [[ $? -eq 0 ]]; then
     # The server is ready, so exit the loop
     break
   fi
-  # Increment the counter variable
-  counter=$((counter + 1))
 
-  if [[ ${counter} -ge ${loop_limit} ]]; then
+  # Increment the loop_counter variable
+  loop_counter=$((loop_counter + 1))
+  if [[ ${loop_counter} -ge ${LOOP_LIMIT} ]]; then
     echo "Error: loop limit reached without the database starting"
     exit 1
   fi
@@ -36,23 +36,14 @@ while true; do
   sleep 3
 done
 
-# Check the exit status of the docker exec command
-if [[ $? -ne 0 ]]; then
-  echo "Error: docker exec command failed"
-  exit 1
-fi
-
-
 echo "Container has been made with a volume"
+
 # Run psql to create the database, substituting the name of the container.
 sleep 5
 
-docker exec -it ${container_id} psql -U ${pg_user} ${pg_db} -f /opt/sql/draft-db.sql
-
-
+docker exec -it ${container_id} psql -U ${POSTGRES_USER} -p ${POSTGRES_PORT} ${POSTGRES_DB} -f /opt/sql/draft-db.sql
 
 echo "This volume now contains data"
 
 #Removing the container
- docker container rm -f ${container_id}
- echo "The container has now been removed."
+docker container rm -f ${container_id}

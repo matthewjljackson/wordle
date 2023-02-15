@@ -1,7 +1,7 @@
 const express = require('express');
-import { PrismaClient } from '@prisma/client';
+const Prisma = require('@prisma/client')
 
-const prisma = new PrismaClient();
+const prisma = new Prisma.PrismaClient();
 
 const app = express();
 const port = 3002;
@@ -27,7 +27,12 @@ app.use(function (req, res, next) {
 });
 
 app.get('/solutions', async (_req, res) => {
-  const solutions = await prisma.word.findMany();
+  let solutions = undefined
+  try {
+    solutions = await prisma;
+  } catch (error) {
+    console.log(error)
+  }
 
   const response = solutions || [{ id: 1, word: 'equip' }];
 
@@ -35,9 +40,16 @@ app.get('/solutions', async (_req, res) => {
 });
 
 app.get('/letters', async (_req, res) => {
-  const letters = await prisma.letter.findMany();
+  let letters = undefined
+  let keys = undefined
+  try {
+    letters = await prisma.letter.findMany();
+    keys = letters.map((letter) => { return { key: letter.key }});
+  } catch (error) {
+    console.log(error)
+  }
 
-  const keys = letters.map((letter) => letter.key);
+  keys = keys || allKeys
 
   res.status(200).json(keys);
 });
@@ -46,31 +58,31 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-// [
-//   { key: 'a' },
-//   { key: 'b' },
-//   { key: 'c' },
-//   { key: 'd' },
-//   { key: 'e' },
-//   { key: 'f' },
-//   { key: 'g' },
-//   { key: 'h' },
-//   { key: 'i' },
-//   { key: 'j' },
-//   { key: 'k' },
-//   { key: 'l' },
-//   { key: 'm' },
-//   { key: 'n' },
-//   { key: 'o' },
-//   { key: 'p' },
-//   { key: 'q' },
-//   { key: 'r' },
-//   { key: 's' },
-//   { key: 't' },
-//   { key: 'u' },
-//   { key: 'v' },
-//   { key: 'w' },
-//   { key: 'x' },
-//   { key: 'y' },
-//   { key: 'z' },
-// ]
+const allKeys = [
+  { key: 'a' },
+  { key: 'b' },
+  { key: 'c' },
+  { key: 'd' },
+  { key: 'e' },
+  { key: 'f' },
+  { key: 'g' },
+  { key: 'h' },
+  { key: 'i' },
+  { key: 'j' },
+  { key: 'k' },
+  { key: 'l' },
+  { key: 'm' },
+  { key: 'n' },
+  { key: 'o' },
+  { key: 'p' },
+  { key: 'q' },
+  { key: 'r' },
+  { key: 's' },
+  { key: 't' },
+  { key: 'u' },
+  { key: 'v' },
+  { key: 'w' },
+  { key: 'x' },
+  { key: 'y' },
+  { key: 'z' },
+]
