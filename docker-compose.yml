@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_DB: wordle_db
-      POSTGRES_PASSWORD: wordle_password
-      POSTGRES_USER: wordle_user
+      POSTGRES_DB: ${WORDLE_DB}
+      POSTGRES_PASSWORD: ${WORDLE_PASSWORD}
+      POSTGRES_USER: ${WORDLE_USER}
     volumes: 
       - dbdata:/var/lib/postgresql/data
 
@@ -21,21 +21,19 @@ services:
 
   # app:
   #   build:
-  #     context: server
+  #     context: src
   #     dockerfile: Dockerfile
-  #   environment:
-  #     DATABASE_URL: "postgresql://wordle_user:wordle_password@db:5432/mydb?schema=public"
-
   #   depends_on:
-  #     db:
-  #       condition: service_healthy
+  #     - server
+  #   # ports:
+  #   #  - ""  
 
   server:
     build:
       context: server
       dockerfile: Dockerfile
     environment:
-      DATABASE_URL: "postgresql://wordle_user:wordle_password@db:5432/mydb?schema=public"
+      DATABASE_URL: "postgresql://${WORDLE_USER}:${WORDLE_PASSWORD}@db:5432/${WORDLE_DB}?schema=public"
     ports:
       - "3000:3000"
     depends_on:
