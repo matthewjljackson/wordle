@@ -53,3 +53,11 @@ To play the game in your browser, head to this URL:
 `https://localhost:3000`
 
 Note: The letters can be typed in, not clicked on. 
+
+
+In order to run docker-compose, create a ```.env``` file to parse the environment variables into the docker-compose file:
+
+
+POSTGRES_DB="postgres_db"
+POSTGRES_PASSWORD="postgres_password"
+POSTGRES_USER="postgres_user"

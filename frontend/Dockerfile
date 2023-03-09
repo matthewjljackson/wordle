@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,7 +13,8 @@ RUN npm install
 # Bundle app source
 COPY . . 
 
-# Just documentation!
+RUN npm run build 
+# Just docum entation!
 EXPOSE 3000
 
-CMD [ "node", "app.tsx" ] 
+CMD ["npx", "http-server", "./build", "-p 3000" ]  
