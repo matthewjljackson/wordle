@@ -1,7 +1,7 @@
 const express = require('express');
-// const Prisma = require('@prisma/client')
+const Prisma = require('@prisma/client')
 
-// const prisma = new Prisma.PrismaClient();
+const prisma = new Prisma.PrismaClient();
 
 const app = express();
 const port = 3002;
@@ -27,32 +27,31 @@ app.use(function (req, res, next) {
 });
 
 app.get('/solutions', async (_req, res) => {
-  // let solutions = undefined
-  // try {
-  //   solutions = await prisma;
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  let solutions = undefined
+  try {
+    solutions = await prisma.solutions.findMany();
+  } catch (error) {
+    console.log(error)
+  }
 
-  // const response = solutions || [{ id: 1, word: 'equip' }];
+  const response = solutions || [{ id: 1, word: 'equip' }];
 
-  res.status(200).json({foobar:"anything"});
+  res.status(200).json(response);
 });
 
 app.get('/letters', async (_req, res) => {
-  // let letters = undefined
-  // let keys = undefined
-  // try {
-  //   letters = await prisma.letter.findMany();
-  //   keys = letters.map((letter) => { return { key: letter.key }});
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  let letters = undefined
+  let keys = undefined
+  try {
+    letters = await prisma.letter.findMany();
+    keys = letters.map((letter) => { return { key: letter.key }});
+  } catch (error) {
+    console.log(error)
+  }
 
-  // keys = keys || allKeys
+  keys = keys || allKeys
 
-  // res.status(200).json(keys);
-  res.status(200).json({foobar:"anything"});
+  res.status(200).json(keys);
 });
 
 app.listen(port, () => {

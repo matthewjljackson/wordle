@@ -13,7 +13,6 @@ VALUES
     (1,'oxide'),
     (2,'torso'),
     (3,'hello'),
-    (4,'equip'),
     (5,'mixed'),
     (6,'cloud');
 
