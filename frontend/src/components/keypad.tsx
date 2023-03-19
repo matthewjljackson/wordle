@@ -9,7 +9,7 @@ const Keypad: FunctionComponent<KeypadProps> = ({ usedKeys }) => {
   const [letters, setLetters] = useState<Letter[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/letters')
+    fetch('http://localhost:3002/letters')
       .then((res) => res.json())
       .then((json: Letter[]) => {
         setLetters(json);
