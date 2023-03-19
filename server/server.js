@@ -1,5 +1,5 @@
 const express = require('express');
-const Prisma = require('@prisma/client')
+const Prisma = require('@prisma/client');
 
 const prisma = new Prisma.PrismaClient();
 
@@ -27,11 +27,11 @@ app.use(function (req, res, next) {
 });
 
 app.get('/solutions', async (_req, res) => {
-  let solutions = undefined
+  let solutions = undefined;
   try {
-    solutions = await prisma.solutions.findMany();
+    solutions = await prisma.word.findMany();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   const response = solutions || [{ id: 1, word: 'equip' }];
@@ -40,16 +40,18 @@ app.get('/solutions', async (_req, res) => {
 });
 
 app.get('/letters', async (_req, res) => {
-  let letters = undefined
-  let keys = undefined
+  let letters = undefined;
+  let keys = undefined;
   try {
     letters = await prisma.letter.findMany();
-    keys = letters.map((letter) => { return { key: letter.key }});
+    keys = letters.map((letter) => {
+      return { key: letter.key };
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  keys = keys || allKeys
+  keys = keys || allKeys;
 
   res.status(200).json(keys);
 });
@@ -85,4 +87,4 @@ const allKeys = [
   { key: 'x' },
   { key: 'y' },
   { key: 'z' },
-]
+];

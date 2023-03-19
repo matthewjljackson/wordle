@@ -13,7 +13,7 @@ RUN npm install
 # Bundle app source
 COPY . . 
 
-RUN npx prisma db
+RUN npx prisma generate
 
 # Just documentation!
 EXPOSE 3002

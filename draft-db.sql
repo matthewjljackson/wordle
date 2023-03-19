@@ -1,5 +1,5 @@
 -- Creating the words table
-CREATE TABLE Word (
+CREATE TABLE "Word" (
   id INT NOT NULL,
   word VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
@@ -7,7 +7,7 @@ CREATE TABLE Word (
 );
 
 -- Adding words into the table
-INSERT INTO Word
+INSERT INTO "Word"
     (id, word) 
 VALUES 
     (1,'oxide'),
@@ -17,7 +17,7 @@ VALUES
     (6,'cloud');
 
 -- Creating the letters table
-CREATE TABLE Letter (
+CREATE TABLE "Letter" (
   id INT NOT NULL,
   key VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
@@ -25,7 +25,7 @@ CREATE TABLE Letter (
 );
 
 -- Adding letters into the table
-INSERT INTO Letter
+INSERT INTO "Letter"
     (id, key) 
 VALUES 
     (1,'a'),
